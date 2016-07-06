@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Cover Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+		<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!-- Custom styles for this template -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+
+  <body>
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+
+          <div style='background-color:white;padding:20px;border-radius:10px;' class="inner cover">
+
+            <h1 style='color:black;'class="cover-heading">Let's keep our city clean!</h1>
+          <br>
+                <section>
+                       <p style="color:gray;" class="lead">From 2012 - 2013 there were {{ total_violations }} violations. See more data below.</p>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12 ">
+                            <div class="panel-group perk-panel" id="accordion">
+                            {% for category in violations_data %}
+
+                            <div class="panel panel-default">
+                            <div class="panel-heading color">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ loop.index }}">{{ category.name }}</a>
+                                </h4>
+                            </div>
+                            <div id="collapse{{ loop.index }}" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <div class="violations">
+                                        <h5>Total Violations: {{ category.number_of_violations }}</h5>
+                                        <h5>First Violation Date: {{ category.first_violation }}</h5>
+                                        <h5>Last Violation Date: {{ category.last_violation }}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            {% endfor %}
+                            </div>
+                        </div>
+                </section>
+
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  </body>
+</html>
